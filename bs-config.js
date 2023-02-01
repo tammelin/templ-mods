@@ -19,7 +19,9 @@ module.exports = {
     "proxy": process.env.SITE_URL,
     "port": process.env.PROXY_PORT,
     "startPath": "?bs",
-    "files": ['dist/*'],
+    "files": [
+        'dist/*'
+    ],
     "serveStatic": [{
         route: '/wp-content/plugins/templ-mods/dist',
         dir: 'dist'
