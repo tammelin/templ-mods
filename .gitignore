@@ -1,5 +1,6 @@
 node_modules/
 vendor/
 .env
+.templ.mjs
 dist/*.css
 dist/*.css.map
