@@ -1,0 +1,9 @@
+{
+	"version": 3,
+	"file": "templ-mods.css",
+	"sources": [
+		"../sass/templ-mods.scss"
+	],
+	"names": [],
+	"mappings": "AAAA,AAAA,IAAI,AAAC,CACD,gBAAgB,CAAE,eAAe,CACpC"
+}

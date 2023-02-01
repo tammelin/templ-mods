@@ -1,0 +1,19 @@
+{
+  "name": "templ-mods",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "compile": "node-sass sass/ -o assets/ --source-map true --output-style compressed --indent-type space --indent-width 4",
+    "watch": "node-sass sass/ -o assets/ --source-map true --output-style compressed --indent-type space --indent-width 4 -w",
+    "bs": "browser-sync start --config bs-config.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "browser-sync": "^2.27.11",
+    "dotenv": "^16.0.3",
+    "node-sass": "^8.0.0"
+  }
+}

@@ -1,0 +1,4 @@
+- Change SITE_URL in .env
+- Upload plugin to site
+- On site, run: composer install
+- On local machine, run: npm run bs
