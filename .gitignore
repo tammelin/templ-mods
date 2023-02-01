@@ -2,5 +2,6 @@ node_modules/
 vendor/
 .env
 .templ.mjs
-dist/*.css
-dist/*.css.map
+dist/*
+!dist/functions.php
+!dist/main.js
