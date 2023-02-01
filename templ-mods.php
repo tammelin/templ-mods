@@ -17,35 +17,31 @@ class TemplMods {
             add_action('wp_enqueue_scripts', [$this, 'enqueue']);
         } else {
             add_action('wp_enqueue_scripts', [$this, 'enqueue_local']);
+            add_action('wp_footer', [$this, 'browser_sync'], 9999);
         }
-        add_action('wp_footer', [$this, 'browser_sync'], 9999);
     }
 
     function enqueue()
     {
-        $style_date = date( "YmdHi", filemtime( TEMPL_MODS_DIR_PATH.'/assets/templ-mods.css' ) );
-        if( filesize(TEMPL_MODS_DIR_PATH.'/assets/templ-mods.css') > 43 /* not 0 because of reference to .css.map */ ) {
-            wp_enqueue_style('templ-mods', TEMPL_MODS_DIR_URL.'/assets/templ-mods.css', [], $style_date);
+        if( file_exists(TEMPL_MODS_DIR_PATH.'/dist/templ-mods.css') ) {
+            $style_date = date( "YmdHi", filemtime( TEMPL_MODS_DIR_PATH.'/dist/templ-mods.css' ) );
+            wp_enqueue_style('templ-mods', TEMPL_MODS_DIR_URL.'/dist/templ-mods.css', [], $style_date);
         }
-        $js_date = date( "YmdHi", filemtime( TEMPL_MODS_DIR_PATH.'/assets/templ-mods.js' ) );
-        if( filesize(TEMPL_MODS_DIR_PATH.'/assets/templ-mods.js') > 0 ) {
-            wp_enqueue_script('templ-mods', TEMPL_MODS_DIR_URL.'/assets/templ-mods.js', [], $js_date, true);
+        if( file_exists(TEMPL_MODS_DIR_PATH.'/dist/templ-mods.js') ) {
+            $js_date = date( "YmdHi", filemtime( TEMPL_MODS_DIR_PATH.'/dist/templ-mods.js' ) );
+            wp_enqueue_script('templ-mods', TEMPL_MODS_DIR_URL.'/dist/templ-mods.js', [], $js_date, true);
         }
     }
 
     function enqueue_local()
     {
         $local_dir_url = 'https://localhost:'.$_ENV['PROXY_PORT'].'/wp-content/plugins/templ-mods';
-
-        wp_enqueue_style('templ-mods', $local_dir_url.'/assets/templ-mods.css', [], time());
-        wp_enqueue_script('templ-mods', $local_dir_url.'/assets/templ-mods.js', [], time(), true);
+        wp_enqueue_style('templ-mods', $local_dir_url.'/dist/templ-mods.css', [], time());
+        wp_enqueue_script('templ-mods', $local_dir_url.'/dist/templ-mods.js', [], time(), true);
     }
 
     function browser_sync()
     {
-        if( ! isset($_GET['bs']) ) {
-            return;
-        }
         ?>
             <script id="__bs_script__">//<![CDATA[
                 document.write("<script async src='http://localhost:<?php echo $_ENV['PROXY_PORT'] ?>/browser-sync/browser-sync-client.js?v=2.27.11'><\/script>");

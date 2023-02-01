@@ -16,14 +16,13 @@
 require('dotenv').config();
 
 module.exports = {
-    // "proxy": "https://tammelin.org",
-    "proxy": process.env.SITE_URL || 'https://tammelin.org',
+    "proxy": process.env.SITE_URL,
     "port": process.env.PROXY_PORT,
     "startPath": "?bs",
-    "files": ['assets/*'],
+    "files": ['dist/*'],
     "serveStatic": [{
-        route: '/wp-content/plugins/templ-mods/assets',
-        dir: 'assets'
+        route: '/wp-content/plugins/templ-mods/dist',
+        dir: 'dist'
     }],
     "ui": {
         "port": process.env.PROXY_PORT-1

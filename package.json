@@ -4,15 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "compile": "node-sass sass/ -o assets/ --source-map true --output-style compressed --indent-type space --indent-width 4",
-    "watch": "node-sass sass/ -o assets/ --source-map true --output-style compressed --indent-type space --indent-width 4 -w",
-    "bs": "browser-sync start --config bs-config.js"
+    "compile:js": "cp src/*.js dist/",
+    "compile:css": "node-sass src/ -o dist/ --source-map true --output-style compressed --indent-type space --indent-width 4",
+    "watch": "npm run compile:css -- -watch",
+    "bs": "browser-sync start --config bs-config.js",
+    "dev": "concurrently \"npm run watch\" \"npm run bs\"",
+    "build": "npm run compile:js; npm run compile:css;"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "browser-sync": "^2.27.11",
+    "concurrently": "^7.6.0",
     "dotenv": "^16.0.3",
     "node-sass": "^8.0.0"
   }
