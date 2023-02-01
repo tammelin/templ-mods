@@ -29,13 +29,13 @@ class TemplMods
 
     function enqueue()
     {
-        if (file_exists(TEMPL_MODS_DIR_PATH . '/dist/style.css')) {
-            $style_date = date("YmdHi", filemtime(TEMPL_MODS_DIR_PATH . '/dist/style.css'));
-            wp_enqueue_style('templ-mods', TEMPL_MODS_DIR_URL . '/dist/style.css', [], $style_date);
+        $css_file = TEMPL_MODS_DIR_PATH . '/dist/style.css';
+        if (file_exists($css_file) && filesize($css_file)) {
+            wp_enqueue_style('templ-mods', TEMPL_MODS_DIR_URL . '/dist/style.css', [], filemtime($css_file));
         }
-        if (file_exists(TEMPL_MODS_DIR_PATH . '/dist/main.js')) {
-            $js_date = date("YmdHi", filemtime(TEMPL_MODS_DIR_PATH . '/dist/main.js'));
-            wp_enqueue_script('templ-mods', TEMPL_MODS_DIR_URL . '/dist/main.js', [], $js_date, true);
+        $js_file = TEMPL_MODS_DIR_PATH . '/dist/main.js';
+        if (file_exists($js_file) && filesize($js_file)) {
+            wp_enqueue_script('templ-mods', TEMPL_MODS_DIR_URL . '/dist/main.js', [], filemtime($js_file), true);
         }
     }
 
