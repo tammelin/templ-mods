@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "compile:js": "cp src/main.js dist/",
-    "compile:css": "node-sass src/ -o dist/ --output-style compressed",
+    "compile:css": "node-sass src/style.scss -o dist/ --output-style compressed",
     "compile:php": "cp src/functions.php dist/",
     "dev": "concurrently \"npm run compile:css -- -watch\" \"browser-sync start --config bs-config.js\"",
     "build": "npm run compile:js; npm run compile:css; npm run compile:php",
