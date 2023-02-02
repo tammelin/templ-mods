@@ -5,3 +5,8 @@ vendor/
 dist/*
 !dist/functions.php
 !dist/main.js
+
+!dist/templates
+dist/templates/*
+!dist/templates/woocommerce
+dist/templates/woocommerce/*

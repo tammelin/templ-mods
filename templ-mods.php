@@ -25,6 +25,7 @@ class TemplMods
             add_action('wp_enqueue_scripts', [$this, 'enqueue_local']);
             add_action('wp_footer', [$this, 'browser_sync'], 9999);
         }
+        add_filter('woocommerce_locate_template', [$this, 'intercept_wc_template'], 10, 3);
     }
 
     function enqueue()
@@ -63,5 +64,21 @@ class TemplMods
         </script>
 <?php
     }
+
+    /**
+     * Filter the cart template path to use cart.php in this plugin instead of the one in WooCommerce.
+     *
+     * @param string $template      Default template file path.
+     * @param string $template_name Template file slug.
+     * @param string $template_path Template file name.
+     *
+     * @return string The new Template file path.
+     */
+    function intercept_wc_template( $template, $template_name, $template_path ) {
+        $template_directory = trailingslashit(TEMPL_MODS_DIR_PATH).'dist/templates/woocommerce/';
+        $path = $template_directory . $template_name;
+        return file_exists( $path ) ? $path : $template;
+    }
+
 }
 new TemplMods();
