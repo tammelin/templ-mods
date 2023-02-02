@@ -6,6 +6,9 @@ const config = {
             'vendor',
             '.git',
             '.templ.mjs',
+            'package.json',
+            'package-lock.json',
+            'bs-config.js',
         ]
     },
     templs:{
