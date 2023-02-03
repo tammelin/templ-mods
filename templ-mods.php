@@ -52,7 +52,7 @@ class TemplMods
 ?>
         <script id="__bs_script__">
             //<![CDATA[
-            document.write("<script async src='http://localhost:<?php echo $_ENV['PROXY_PORT'] ?>/browser-sync/browser-sync-client.js?v=2.27.11'><\/script>");
+            document.write("<script async src='https://localhost:<?php echo $_ENV['PROXY_PORT'] ?>/browser-sync/browser-sync-client.js?v=2.27.11'><\/script>");
             //]]>
         </script>
         <script>

@@ -28,5 +28,6 @@ module.exports = {
     }],
     "ui": {
         "port": process.env.PROXY_PORT-1
-    }
+    },
+    "injectChanges": false,
 };
