@@ -51,6 +51,11 @@ If you want to add custom JavaScript to the site, add that to `src/main.js`.
 
 Once you are happy with your changes, you can deploy them by simply running Templ Deploy again.
 
+## Working with WooCommerce
+
+If you need to make changes to WooCommerce template files, you can add WC template files to edit in `dist/templates/woocommerce/`.
+
+Just like you would normally add them to `woocommerce/` inside a theme)...
 
 ## Changing port
 
