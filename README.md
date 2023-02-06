@@ -1,33 +1,59 @@
+# Templ Mods
+
+Templ Mods is a WordPress plugin that let's your write SCSS on your local machine and immediately see the changes on a remote WordPress. It also comes bundled with [Templ Deploy](https://github.com/herman-templio/templ-deploy) for easy deployment to Templ.
+
+This is especially useful when working on a site where we don't have a child theme to work on, or when we just want to quickly set up a development workflow.
+
 ## Installation
 
-### On local machine
+Clone this repo to your local machine then install all dependencies:
 
-##### Step 1:
-
-```
-npm install
+```bash
+npn install
 ```
 
-##### Step 2:
+Create a `.env` file containing the address of the remote website (`SITE_URL`) and the desired port of your local proxy:
 
-Change SITE_URL in .env
-
-##### Step 3:
-
-```
-npm run bs
+```bash
+SITE_URL='https://example.com'
+PROXY_PORT=1337
 ```
 
-### On remote site
+To use Templ Deploy, also create a `.templ.mjs` file with the credentials of the site(s) ("templs") you want ot deploy to, e.g.:
 
-##### Step 1:
-
-Upload plugin to site
-
-##### Step 2:
-
-Inside the plugin folder, run: 
-
+```javascript
+'staging': {
+    app: 1234, // Templ APP ID
+    host: 'example.com',
+    port: 12345,
+    dst: '/home/user_1234/app_1234_staging/wp-content/plugins/templ-mods/',
+    sshCmd: '/usr/bin/templ-ccli cache purge', // Purge Templ Cache after deploy
+}
 ```
-composer install
+
+Upload the plugin to the remote WordPress site using your method of choice, or by using Templ Deploy:
+
+```bash
+npm run deploy staging
 ```
+
+## Usage
+
+You then can start start editing `src/style.scss` on your local machine and watch your changes "live" by running:
+
+```bash
+npm run dev
+```
+
+If you want to add custom PHP functions, add them to `src/functions.php`.
+
+If you want to add custom JavaScript to the site, add that to `src/main.js`.
+
+Once you are happy with your changes, you can deploy them by simply running Templ Deploy again.
+
+
+## Changing port
+
+The default proxy port is 1337, to change you it you have to set your desired port on your local machine by editing `.env`.
+
+You'll also have to set the new port at the remote WordPress site using either the constant `TEMPL_MODS_LOCAL_ADDRESS` or using the filter `templ_mods_local_address`.

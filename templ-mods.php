@@ -7,10 +7,6 @@
 define('TEMPL_MODS_DIR_PATH', plugin_dir_path(__FILE__));
 define('TEMPL_MODS_DIR_URL', plugin_dir_url(__FILE__));
 
-require_once(TEMPL_MODS_DIR_PATH . '/vendor/autoload.php');
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv->load();
-
 if (file_exists(TEMPL_MODS_DIR_PATH . '/dist/functions.php')) {
     require_once(TEMPL_MODS_DIR_PATH . '/dist/functions.php');
 }
@@ -40,9 +36,14 @@ class TemplMods
         }
     }
 
+    function get_local_address()
+    {
+        return defined('TEMPL_MODS_LOCAL_ADDRESS') ? TEMPL_MODS_LOCAL_ADDRESS : apply_filters('templ_mods_local_address', 'https://localhost:1337');
+    }
+
     function enqueue_local()
     {
-        $local_dir_url = 'https://localhost:' . $_ENV['PROXY_PORT'] . '/wp-content/plugins/templ-mods';
+        $local_dir_url = $this->get_local_address() . '/wp-content/plugins/templ-mods';
         wp_enqueue_style('templ-mods', $local_dir_url . '/dist/style.css', [], time());
         wp_enqueue_script('templ-mods', $local_dir_url . '/dist/main.js', [], time(), true);
     }
@@ -52,7 +53,7 @@ class TemplMods
 ?>
         <script id="__bs_script__">
             //<![CDATA[
-            document.write("<script async src='https://localhost:<?php echo $_ENV['PROXY_PORT'] ?>/browser-sync/browser-sync-client.js?v=2.27.11'><\/script>");
+            document.write("<script async src='<?php echo $this->get_local_address(); ?>/browser-sync/browser-sync-client.js?v=2.27.11'><\/script>");
             //]]>
         </script>
         <script>

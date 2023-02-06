@@ -13,11 +13,11 @@ const config = {
     },
     templs:{
         'staging': {
-            app: 2064,
-            host: 'tammelin.org',
-            port: 22006,
-            dst: '/home/user_2064/app_2064/wp-content/plugins/templ-mods/',
-            sshCmd: '/usr/bin/templ-ccli cache purge', // Run remotely after files copied
+            app: 1234, // Templ APP ID
+            host: 'example.com',
+            port: 12345,
+            dst: '/home/user_1234/app_1234_staging/wp-content/plugins/templ-mods/',
+            sshCmd: '/usr/bin/templ-ccli cache purge', // Purge Templ Cache after deploy
         }
     }
 }
