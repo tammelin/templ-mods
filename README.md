@@ -37,6 +37,8 @@ Upload the plugin to the remote WordPress site using your method of choice, or b
 npm run deploy staging
 ```
 
+Finally activate the plugin "templ-mods" on the remote site.
+
 ## Usage
 
 You then can start start editing `src/style.scss` on your local machine and watch your changes "live" by running:
